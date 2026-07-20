@@ -17,24 +17,25 @@ const NoteDetailsClient = () => {
     refetchOnMount: false,
   });
   if (isError || !note) {
-    return <p>Loading, please wait...</p>;
+    return <p>Something went wrong.</p>;
   }
   return (
     <>
-      {isError && !note && <p>Something went wrong.</p>}
       {isLoading && <p>Loading, please wait...</p>}
-      <main className={css.main}>
-        <div className={css.container}>
-          <div className={css.item}>
-            <div className={css.header}>
-              <h2>{note?.title}</h2>
+      {note && (
+        <main className={css.main}>
+          <div className={css.container}>
+            <div className={css.item}>
+              <div className={css.header}>
+                <h2>{note?.title}</h2>
+              </div>
+              <p className={css.tag}>{note?.tag}</p>
+              <p className={css.content}>{note?.content}</p>
+              <p className={css.date}>{note?.createdAt}</p>
             </div>
-            <p className={css.tag}>{note?.tag}</p>
-            <p className={css.content}>{note?.content}</p>
-            <p className={css.date}>{note?.createdAt}</p>
           </div>
-        </div>
-      </main>
+        </main>
+      )}
     </>
   );
 };
