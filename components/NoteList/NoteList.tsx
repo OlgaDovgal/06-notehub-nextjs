@@ -1,4 +1,4 @@
-import { QueryClient, useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import css from "./NoteList.module.css";
 import toast from "react-hot-toast/headless";
@@ -10,7 +10,7 @@ interface NoteListProps {
   notes: Note[];
 }
 export default function NoteList({ notes }: NoteListProps) {
-  const queryClient = new QueryClient();
+  const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: deleteNote,
     onSuccess: () => {
