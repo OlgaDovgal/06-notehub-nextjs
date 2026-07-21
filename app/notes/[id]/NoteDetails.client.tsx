@@ -16,11 +16,10 @@ const NoteDetailsClient = () => {
     queryFn: () => fetchNoteById(id),
     refetchOnMount: false,
   });
-  if (isError || !note) {
-    return <p>Something went wrong.</p>;
-  }
+
   return (
     <>
+      {isError && <p>Something went wrong.</p>}
       {isLoading && <p>Loading, please wait...</p>}
       {note && (
         <main className={css.main}>
